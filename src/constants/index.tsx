@@ -1,5 +1,5 @@
 import Twitter from "../../public/assets/icons/x-social-media-black-icon.svg";
-import Facebook from "../../public/assets/icons/facebook-square-black-icon.svg";
+import Facebook from "../../public/assets/icons/facebook-app-round-icon.svg";
 import Instagram from "../../public/assets/icons/black-instagram-icon (1).svg";
 import Youtube from "../../public/assets/icons/youtube-icon.svg";
 

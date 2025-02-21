@@ -20,7 +20,7 @@ const SearchForm = () => {
       <input
         type="search"
         placeholder="Search"
-        className="flex-1 outline-none h-full caret-primary-blue"
+        className="flex-1 outline-none h-full bg-white caret-primary-blue"
       />
       <button type="submit">
         <svg
