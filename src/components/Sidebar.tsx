@@ -58,7 +58,7 @@ const Sidebar = ({ isSidebarActive, handleActivateSidebar }: SidebarProps) => {
         </div>
         <button
           type="button"
-          className="md:w-16 md:h-16 w-12 h-12 rounded-full max-sm:absolute bottom-6 right-6 bg-white shadow flex-c justify-center mt-4"
+          className="md:w-16 md:h-16 w-12 h-12 rounded-full max-sm:absolute top-6 right-6 bg-white shadow flex-c justify-center mt-4"
           onClick={handleActivateSidebar}
         >
           <svg
