@@ -1,10 +1,14 @@
+import { useState } from "react";
+
+import Footer from "@/components/Footer";
 import HeroSection from "@/components/HeroSection";
+import MoreNews from "@/components/MoreNews";
 import Navbar from "@/components/Navbar";
 import RecentNews from "@/components/RecentNews";
 import ScrollTop from "@/components/ScrollTop";
 import Sidebar from "@/components/Sidebar";
 import Topics from "@/components/Topics";
-import { useState } from "react";
+import StaffPick from "@/components/StaffPick";
 
 const Home = () => {
   const [isSidebarActive, setIsSideBarActive] = useState(false);
@@ -14,7 +18,7 @@ const Home = () => {
   };
 
   return (
-    <main className="relative min-h-screen w-full">
+    <main className="relative min-h-screen w-full bg-gray-100">
       <ScrollTop />
       <Navbar handleActivateSidebar={handleActivateSidebar} />
       <Sidebar
@@ -22,11 +26,12 @@ const Home = () => {
         handleActivateSidebar={handleActivateSidebar}
       />
       <HeroSection />
-      <RecentNews />
+      <RecentNews maxWidth="max-w-5xl" />
       <Topics />
-      <div className="h-screen"></div>
-      <div className="h-screen"></div>
-      <div className="h-screen"></div>
+      <StaffPick />
+      <MoreNews />
+      <RecentNews maxWidth="max-w-7xl" />
+      <Footer />
     </main>
   );
 };

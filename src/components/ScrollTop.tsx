@@ -28,7 +28,7 @@ const ScrollTop = () => {
       {showScrollTop && (
         <button
           onClick={scrollToTop}
-          className="fixed bottom-6 right-6 bg-primary-blue text-primary-black p-3 rounded-full shadow-lg hover:bg-blue-300 transition-all duration-700 z-10 "
+          className="fixed bottom-6 right-6 bg-primary-blue text-primary-black p-3 rounded-full shadow-lg hover:bg-blue-200 transition-all duration-700 z-10 "
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"

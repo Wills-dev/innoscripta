@@ -1,4 +1,8 @@
-const RecentNews = () => {
+interface RecentNewsProps {
+  maxWidth: string;
+}
+
+const RecentNews = ({ maxWidth }: RecentNewsProps) => {
   return (
     <section className="w-full py-16">
       <div className="padding-ctn w-full">
@@ -6,7 +10,7 @@ const RecentNews = () => {
           <h2 className="border-b-1 border-primary-black pb-1 border-dotted font-medium sm:text-xl">
             Recent
           </h2>
-          <div className="max-w-5xl w-full ">
+          <div className={`${maxWidth} w-full `}>
             {["", "", "", ""].map((news, i) => (
               <div
                 key={i}

@@ -7,7 +7,7 @@ const Topics = () => {
             Topics
           </h2>
           <div className="">
-            <h3 className="font-700 font-poly text-8xl">
+            <h3 className="font-700 font-poly sm:text-8xl text-6xl max-sm:text-center">
               Innoscripta reports on topics like{" "}
               <a
                 href=""
