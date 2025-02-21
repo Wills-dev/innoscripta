@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 
 import Logo from "./Logo";
+import { topics } from "@/constants";
 
 interface NavbarProps {
   handleActivateSidebar: () => void;
@@ -56,12 +57,12 @@ const Navbar = ({ handleActivateSidebar }: NavbarProps) => {
 
         {isHeightGreaterThan400 && (
           <ul className="flex-c gap-6 font-basis text-primary-black font-bold max-md:hidden">
-            {["About us", "Local news", "Event"].map((item) => (
+            {topics.map((item, i) => (
               <li
-                key={item}
+                key={i}
                 className="hover:text-gray-500 transition-all duration-500 cursor-pointer"
               >
-                {item}
+                {item.topic}
               </li>
             ))}
           </ul>
