@@ -9,9 +9,12 @@ import ScrollTop from "@/components/ScrollTop";
 import Sidebar from "@/components/Sidebar";
 import Topics from "@/components/Topics";
 import StaffPick from "@/components/StaffPick";
+import { useGetAllNews } from "@/hooks/useGetAllNews";
 
 const Home = () => {
   const [isSidebarActive, setIsSideBarActive] = useState(false);
+
+  const { allNews, loading } = useGetAllNews();
 
   const handleActivateSidebar = () => {
     setIsSideBarActive((prev) => !prev);
