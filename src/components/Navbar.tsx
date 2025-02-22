@@ -38,7 +38,7 @@ const Navbar = ({ handleActivateSidebar }: NavbarProps) => {
   } ${isHeightGreaterThan400 && "border-b border-primary-black border-dotted"}`;
 
   const navClasses = `flex-c-b ${
-    isHeightGreaterThan400 ? "sm:py-3 py-1" : "sm:py-1 py-3"
+    isHeightGreaterThan400 ? "py-3" : "sm:py-1 py-3"
   }`;
 
   const logoHeight = isHeightGreaterThan400 ? "sm:h-10 h-8" : "sm:h-20 h-10";

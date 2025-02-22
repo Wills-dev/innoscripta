@@ -1,6 +1,8 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const HeroSection = () => {
+  const navigate = useNavigate();
+
   return (
     <section className="w-full sm:pt-40 pt-28">
       <div className="padding-ctn w-full">
@@ -9,7 +11,7 @@ const HeroSection = () => {
             to="/"
             className="lg:col-span-6 col-span-11 space-y-10 w-full flex flex-col max-sm:items-center"
           >
-            <h3 className="font-bold sm:text-5xl text-3xl font-poly leading-normal text-primary-black hover:underline transition-all duration-500 max-sm:text-center">
+            <h3 className="font-bold sm:text-5xl text-3xl font-poly  text-primary-black hover:underline transition-all duration-500 max-sm:text-center">
               Republicans once embraced ‘green banks.’ Trump is trying to raid
               them.
             </h3>
@@ -21,9 +23,12 @@ const HeroSection = () => {
                   className="w-full h-full object-cover rounded-full"
                 />
               </div>
-              <Link to="/about" className="sub-heading">
+              <span
+                onClick={() => navigate("/about")}
+                className="sub-heading cursor-pointer hover:underline"
+              >
                 Jake Will
-              </Link>
+              </span>
             </div>
             <div className="max-w-full w-full bg-gray-600">
               <img
