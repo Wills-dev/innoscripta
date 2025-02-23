@@ -1,7 +1,4 @@
-import { useMemo } from "react";
-
 import { Article } from "@/type";
-import { getRandomizedNews } from "@/helpers/randomizedNews";
 
 interface HeroSectionProps {
   filteredNews: Article[];
@@ -51,7 +48,7 @@ const HeroSection = ({
               <h6 className="sub-heading border-b-1 border-primary-black pb-1 border-dotted">
                 {firstSubHeading && firstSubHeading}
               </h6>
-              <div className="overflow-x-auto flex sm:flex-col w-full mt-2">
+              <div className="no-scroll overflow-x-auto flex sm:flex-col w-full mt-2">
                 {filteredNews?.slice(0, 5).map((news, i) => (
                   <div
                     key={i}
