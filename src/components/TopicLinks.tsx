@@ -10,9 +10,14 @@ import { RootState } from "../store/store";
 interface TopicLinksProps {
   categories: string[];
   sources: string[];
+  handleActivateSidebar: () => void;
 }
 
-const TopicLinks = ({ categories, sources }: TopicLinksProps) => {
+const TopicLinks = ({
+  categories,
+  sources,
+  handleActivateSidebar,
+}: TopicLinksProps) => {
   const dispatch = useDispatch();
   const { category, source, date } = useSelector(
     (state: RootState) => state.newsFilter
@@ -32,7 +37,10 @@ const TopicLinks = ({ categories, sources }: TopicLinksProps) => {
               className={`text-sm font-bold font-poly cursor-pointer ${
                 category === topic ? "text-blue-300" : ""
               }`}
-              onClick={() => dispatch(setCategory(topic))}
+              onClick={() => {
+                dispatch(setCategory(topic));
+                handleActivateSidebar();
+              }}
             >
               {topic}
             </li>
@@ -50,7 +58,10 @@ const TopicLinks = ({ categories, sources }: TopicLinksProps) => {
               className={`text-sm font-bold font-poly cursor-pointer ${
                 source === src ? "text-blue-300" : ""
               }`}
-              onClick={() => dispatch(setSource(src))}
+              onClick={() => {
+                dispatch(setSource(src));
+                handleActivateSidebar();
+              }}
             >
               {src}
             </li>
@@ -70,7 +81,10 @@ const TopicLinks = ({ categories, sources }: TopicLinksProps) => {
       </div>
       <button
         className="w-fit bg-blue-200 py-1 px-4 rounded-md"
-        onClick={() => dispatch(resetFilters())}
+        onClick={() => {
+          dispatch(resetFilters());
+          handleActivateSidebar();
+        }}
       >
         Reset Filters
       </button>

@@ -12,13 +12,13 @@ import { getFilterValues } from "@/helpers";
 
 interface SidebarProps {
   isSidebarActive: boolean;
-  handleActivateSidebar: () => void;
+  setIsSideBarActive: (isSidebarActive: boolean) => void;
   allNews: Article[];
 }
 
 const Sidebar = ({
   isSidebarActive,
-  handleActivateSidebar,
+  setIsSideBarActive,
   allNews,
 }: SidebarProps) => {
   const { categories, authors, sources } = getFilterValues(allNews);
@@ -29,6 +29,10 @@ const Sidebar = ({
       document.body.style.overflow = "auto";
     };
   }, [isSidebarActive]);
+
+  const handleActivateSidebar = () => {
+    setIsSideBarActive(false);
+  };
 
   return (
     <aside
@@ -49,15 +53,26 @@ const Sidebar = ({
               <p className="sub-heading border-b-1 border-primary-black pb-1 border-dotted">
                 Search
               </p>
-              <SearchForm />
+              <SearchForm
+                formStyle="sm:h-12 h-10 bg-white px-2"
+                searchIcon={true}
+                inputStyle="bg-white"
+                arrowIconStyle="md:size-10 size-8"
+                handleActivateSidebar={handleActivateSidebar}
+              />
             </div>
             <NewsPreferences
               categories={categories}
               authors={authors}
               sources={sources}
+              handleActivateSidebar={handleActivateSidebar}
             />
 
-            <TopicLinks categories={categories} sources={sources} />
+            <TopicLinks
+              categories={categories}
+              sources={sources}
+              handleActivateSidebar={handleActivateSidebar}
+            />
 
             <div className="space-y-4">
               <p className="sub-heading border-b-1 border-primary-black pb-1 border-dotted">
