@@ -13,11 +13,6 @@ const HeroSection = ({
   firstSubHeading,
   secondSubHeading,
 }: HeroSectionProps) => {
-  // const randomNews = useMemo(
-  //   () => getRandomizedNews(filteredNews),
-  //   [filteredNews]
-  // );
-
   const mainNews = filteredNews[filteredNews.length - 1];
 
   return (
