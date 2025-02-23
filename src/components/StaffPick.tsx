@@ -13,7 +13,7 @@ const StaffPick = () => {
               <Link to="/" className="w-full space-y-2 flex flex-col">
                 <div className="max-w-full w-full bg-gray-600">
                   <img
-                    src="/assets/images/epa-gold-bars.webp"
+                    src="/src/assets/images/epa-gold-bars.webp"
                     alt=""
                     className="max-w-full w-full h-auto object-cover"
                   />
@@ -59,7 +59,7 @@ const StaffPick = () => {
               <Link to="/" className="w-full space-y-2 flex flex-col">
                 <div className="max-w-full w-full bg-gray-600">
                   <img
-                    src="/assets/images/GettyImages-2196460551.webp"
+                    src="/src/assets/images/GettyImages-2196460551.webp"
                     alt=""
                     className="max-w-full w-full h-auto object-cover"
                   />

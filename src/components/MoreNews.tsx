@@ -12,7 +12,7 @@ const MoreNews = () => {
           >
             <div className="max-w-full w-full bg-gray-600">
               <img
-                src="/assets/images/Imagine2200-transparent.webp"
+                src="/src/assets/images/Imagine2200-transparent.webp"
                 alt=""
                 className="max-w-full w-full h-auto object-cover"
               />
@@ -24,7 +24,7 @@ const MoreNews = () => {
             <div className="flex-c gap-3">
               <div className="w-10 h-10 rounded-full bg-slate-400">
                 <img
-                  src="/assets/images/epa-gold-bars.webp"
+                  src="/src/assets/images/epa-gold-bars.webp"
                   alt=""
                   className="w-full h-full object-cover rounded-full"
                 />
@@ -68,7 +68,7 @@ const MoreNews = () => {
                       <div className="">
                         <div className="max-w-full w-full">
                           <img
-                            src="/assets/images/GettyImages-2196460551.webp"
+                            src="/src/assets/images/GettyImages-2196460551.webp"
                             alt=""
                             className="max-w-full w-full h-auto object-cover"
                           />

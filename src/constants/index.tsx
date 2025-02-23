@@ -1,7 +1,7 @@
-import Twitter from "/assets/icons/x-social-media-black-icon.svg";
-import Facebook from "/assets/icons/facebook-app-round-icon.svg";
-import Instagram from "/assets/icons/black-instagram-icon (1).svg";
-import Youtube from "/assets/icons/youtube-icon.svg";
+import Twitter from "../assets/icons/x-social-media-black-icon.svg";
+import Facebook from "../assets/icons/facebook-app-round-icon.svg";
+import Instagram from "../assets/icons/black-instagram-icon (1).svg";
+import Youtube from "../assets/icons/youtube-icon.svg";
 
 export const goTo = [
   "About us",
@@ -14,6 +14,16 @@ export const goTo = [
   "The Innoscripta 50",
   "Advertise",
   "Imagine 2200Cli-Fi",
+];
+
+export const sources = ["The Guardian", "The New York Times", "Open News"];
+
+export const categories = [
+  "Business",
+  "Technology",
+  "Sports",
+  "Entertainment",
+  "Health",
 ];
 
 export const topics = [

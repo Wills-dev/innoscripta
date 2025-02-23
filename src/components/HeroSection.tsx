@@ -1,62 +1,60 @@
-import { Link, useNavigate } from "react-router-dom";
+import { useMemo } from "react";
 
-const HeroSection = () => {
-  const navigate = useNavigate();
+import { Article } from "@/type";
+import { getRandomizedNews } from "@/helpers/randomizedNews";
+
+interface HeroSectionProps {
+  filteredNews: Article[];
+}
+
+const HeroSection = ({ filteredNews }: HeroSectionProps) => {
+  const randomNews = useMemo(
+    () => getRandomizedNews(filteredNews),
+    [filteredNews]
+  );
+
+  const mainNews = randomNews[randomNews.length - 1];
 
   return (
-    <section className="w-full sm:pt-40 pt-28">
+    <section className="w-full pt-5">
       <div className="padding-ctn w-full">
         <div className="grid  grid-cols-10 w-full gap-8 ">
-          <Link
-            to="/"
-            className="lg:col-span-6 col-span-11 space-y-10 w-full flex flex-col max-sm:items-center"
+          <a
+            href={mainNews?.newsUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="lg:col-span-6 col-span-11 space-y-6 w-full flex flex-col max-sm:items-center"
           >
             <h3 className="font-bold sm:text-5xl text-3xl font-poly  text-primary-black hover:underline transition-all duration-500 max-sm:text-center">
-              Republicans once embraced ‘green banks.’ Trump is trying to raid
-              them.
+              {mainNews?.title}
             </h3>
-            <div className="flex-c gap-3">
-              <div className="w-10 h-10 rounded-full bg-slate-400">
-                <img
-                  src="/assets/images/epa-gold-bars.webp"
-                  alt=""
-                  className="w-full h-full object-cover rounded-full"
-                />
-              </div>
-              <span
-                onClick={() => navigate("/about")}
-                className="sub-heading cursor-pointer hover:underline"
-              >
-                Jake Will
-              </span>
-            </div>
+            <h6 className="sub-heading">{mainNews?.source}</h6>
             <div className="max-w-full w-full bg-gray-600">
               <img
-                src="/assets/images/epa-gold-bars.webp"
-                alt=""
+                src={mainNews?.imageUrl}
+                alt={mainNews?.title || "News Image"}
                 className="max-w-full w-full h-auto object-cover"
+                loading="lazy"
               />
             </div>
-          </Link>
+          </a>
           <div className="lg:col-span-4 col-span-11 grid grid-cols-2 gap-8">
             <div className="sm:col-span-1 col-span-2 w-full no-scroll">
               <h6 className="sub-heading border-b-1 border-primary-black pb-1 border-dotted">
                 Latest
               </h6>
               <div className="overflow-x-auto flex sm:flex-col w-full mt-2">
-                {["", "", "", "", "", ""].map((news, i) => (
+                {filteredNews?.slice(0, 5).map((news, i) => (
                   <div
                     key={i}
                     className="w-full max-sm:min-w-72 sm:border-b-1 max-sm:border-r-1  py-4 max-sm:px-4 space-y-2"
                   >
                     <h3 className="font-light sm:text-lg hover-link">
-                      <a href="" className="">
-                        What a more sustainable tourism industry could look like
+                      <a href={news?.newsUrl} className="">
+                        {news?.title}
                       </a>
                     </h3>
-                    <h6 className="text-sm font-bold hover-link">
-                      <a href="http://">Claire Elise Thompson</a>
-                    </h6>
+                    <h6 className="text-sm font-bold">{news?.source}</h6>
                   </div>
                 ))}
               </div>
@@ -66,30 +64,25 @@ const HeroSection = () => {
                 Featured
               </h6>
               <div className="flex flex-col w-full">
-                {["", "", ""].map((news, i) => (
+                {randomNews?.slice(0, 3).map((news, i) => (
                   <div key={i} className="w-full border-b-1 py-4 space-y-2">
                     <a href="" className="">
                       <div className="">
                         <div className="max-w-full w-full">
                           <img
-                            src="/assets/images/epa-gold-bars.webp"
-                            alt=""
+                            src={news?.imageUrl}
+                            alt={news.title || "Featured News"}
                             className="max-w-full w-full h-auto object-cover"
+                            loading="lazy"
                           />
                         </div>
                         <h3 className="font-light sm:text-lg hover-link">
-                          What a more sustainable tourism industry could look
-                          like
+                          {news?.title}
                         </h3>
                       </div>
                     </a>
 
-                    <Link
-                      to="/about"
-                      className="sub-heading hover:underline transition-all duration-500 ease-ou"
-                    >
-                      Clayton Will
-                    </Link>
+                    <span className="sub-heading">{news?.author}</span>
                   </div>
                 ))}
               </div>

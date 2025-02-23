@@ -9,12 +9,16 @@ import ScrollTop from "@/components/ScrollTop";
 import Sidebar from "@/components/Sidebar";
 import Topics from "@/components/Topics";
 import StaffPick from "@/components/StaffPick";
+import useFilteredNews from "@/hooks/useFilteredNews";
+
 import { useGetAllNews } from "@/hooks/useGetAllNews";
+import FilterFeature from "@/components/FilterFeature";
 
 const Home = () => {
   const [isSidebarActive, setIsSideBarActive] = useState(false);
 
   const { allNews, loading } = useGetAllNews();
+  const filteredNews = useFilteredNews(allNews);
 
   const handleActivateSidebar = () => {
     setIsSideBarActive((prev) => !prev);
@@ -27,8 +31,10 @@ const Home = () => {
       <Sidebar
         isSidebarActive={isSidebarActive}
         handleActivateSidebar={handleActivateSidebar}
+        allNews={allNews}
       />
-      <HeroSection />
+      <FilterFeature allNews={allNews} />
+      <HeroSection filteredNews={filteredNews} />
       <RecentNews maxWidth="max-w-5xl" />
       <Topics />
       <StaffPick />
