@@ -162,3 +162,12 @@ export const footerNavs = [
     ],
   },
 ];
+
+export const errorMessages = {
+  noNews:
+    "Oops! We couldn't find any news at the moment. Please check back later.",
+  noPreferencesMatch:
+    "No articles match your preferences. Try adjusting your categories, sources, or authors.",
+  noFilterMatch:
+    "No articles match your selected filters. Try modifying your search criteria.",
+};

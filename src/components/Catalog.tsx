@@ -2,6 +2,8 @@ import { Article } from "@/type";
 
 import RecentNews from "./RecentNews";
 import SearchForm from "./SearchForm";
+import NewsPreferences from "./NewsPreferences";
+import { getFilterValues } from "@/helpers";
 
 interface CatalogProps {
   setIsSideBarActive: (isSidebarActive: boolean) => void;
@@ -14,8 +16,10 @@ const Catalog = ({
   filteredNews,
   allNews,
 }: CatalogProps) => {
+  const { categories, authors, sources } = getFilterValues(allNews);
+
   return (
-    <section className="w-full sm:pt-40 pt-28">
+    <section className="w-full sm:pt-40 pt-16">
       <div className="padding-ctn w-full">
         <SearchForm
           formStyle="sm:h-16 h-14  border-b-1 border-primary-black"
@@ -24,7 +28,15 @@ const Catalog = ({
           arrowIconStyle="md:size-14 size-10"
           handleActivateSidebar={() => setIsSideBarActive(false)}
         />
-        <div className="flex w-full">
+        <div className="flex gap-10 w-full">
+          <div className="pt-8 max-xl:hidden">
+            <NewsPreferences
+              categories={categories}
+              authors={authors}
+              sources={sources}
+              handleActivateSidebar={() => setIsSideBarActive(false)}
+            />
+          </div>
           <div className="w-full">
             {" "}
             {filteredNews.length < 1 && allNews.length > 0 ? (

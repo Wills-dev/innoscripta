@@ -6,6 +6,8 @@ import {
   resetFilters,
 } from "../store/newsFilterSlice";
 import { RootState } from "../store/store";
+import { useState } from "react";
+import ExpandableButton from "./ExpandableButton";
 
 interface TopicLinksProps {
   categories: string[];
@@ -23,6 +25,11 @@ const TopicLinks = ({
     (state: RootState) => state.newsFilter
   );
 
+  const [isCatExpanded, setIsCatExpanded] = useState(false);
+  const visibleCategories = isCatExpanded
+    ? categories
+    : categories?.slice(0, 10);
+
   return (
     <>
       <div className="space-y-4">
@@ -31,7 +38,7 @@ const TopicLinks = ({
         </div>
 
         <ul className="space-y-2 pt-4">
-          {categories.map((topic, index) => (
+          {visibleCategories.map((topic, index) => (
             <li
               key={index}
               className={`text-sm font-bold font-poly cursor-pointer ${
@@ -46,6 +53,12 @@ const TopicLinks = ({
             </li>
           ))}
         </ul>
+        {Array.isArray(categories) && categories?.length > 10 && (
+          <ExpandableButton
+            isExpanded={isCatExpanded}
+            toggleExpand={() => setIsCatExpanded((prev) => !prev)}
+          />
+        )}
       </div>
       <div className="space-y-4">
         <p className="sub-heading border-b-1 border-primary-black pb-1 border-dotted">
@@ -80,7 +93,7 @@ const TopicLinks = ({
         />
       </div>
       <button
-        className="w-fit bg-blue-200 py-1 px-4 rounded-md"
+        className="bg-primary-black text-white text-center max-w-60 w-full px-2 py-2"
         onClick={() => {
           dispatch(resetFilters());
           handleActivateSidebar();

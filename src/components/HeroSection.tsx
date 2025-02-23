@@ -16,12 +16,12 @@ const HeroSection = ({
   firstSubHeading,
   secondSubHeading,
 }: HeroSectionProps) => {
-  const randomNews = useMemo(
-    () => getRandomizedNews(filteredNews),
-    [filteredNews]
-  );
+  // const randomNews = useMemo(
+  //   () => getRandomizedNews(filteredNews),
+  //   [filteredNews]
+  // );
 
-  const mainNews = randomNews[randomNews.length - 1];
+  const mainNews = filteredNews[filteredNews.length - 1];
 
   return (
     <section className={`w-full ${additionalStyling}`}>
@@ -77,7 +77,7 @@ const HeroSection = ({
                 {secondSubHeading && secondSubHeading}
               </h6>
               <div className="flex flex-col w-full">
-                {randomNews?.slice(0, 3).map((news, i) => (
+                {filteredNews?.slice(0, 3).map((news, i) => (
                   <div key={i} className="w-full border-b-1 py-4 space-y-2">
                     <a
                       href={news?.newsUrl}
@@ -86,14 +86,16 @@ const HeroSection = ({
                       className=""
                     >
                       <div className="">
-                        <div className="max-w-full w-full">
-                          <img
-                            src={news?.imageUrl}
-                            alt={news.title || "Featured News"}
-                            className="max-w-full w-full sm:max-h-40 h-auto object-cover"
-                            loading="lazy"
-                          />
-                        </div>
+                        {news?.imageUrl && (
+                          <div className="max-w-full w-full">
+                            <img
+                              src={news?.imageUrl}
+                              alt={news.title || "Featured News"}
+                              className="max-w-full w-full sm:max-h-40 h-auto object-cover"
+                              loading="lazy"
+                            />
+                          </div>
+                        )}
                         <h3 className="font-light sm:text-lg hover-link">
                           {news?.title}
                         </h3>

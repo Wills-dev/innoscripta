@@ -49,7 +49,7 @@ const Sidebar = ({
             stories of climate solutions and a just future.
           </p>
           <div className="pt-14 space-y-10">
-            <div className="space-y-4">
+            <div className="space-y-4" id="search">
               <p className="sub-heading border-b-1 border-primary-black pb-1 border-dotted">
                 Search
               </p>

@@ -62,7 +62,6 @@ const SearchForm = ({
       )}
       <div className="flex-1 w-full h-full flex-c-b">
         <input
-          id="search"
           type="search"
           placeholder="Search"
           className={`"lex-1 outline-none h-full caret-primary-blue capitalize ${inputStyle}`}
