@@ -40,7 +40,7 @@ const RecentNews = ({ maxWidth }: RecentNewsProps) => {
                 <div className="md:w-80 w-full">
                   {" "}
                   <img
-                    src="/assets/images/epa-gold-bars.webp"
+                    src="/src/assets/images/epa-gold-bars.webp"
                     alt=""
                     className="md:max-w-80 md:w-80 w-full min-w-full h-auto object-cover"
                   />

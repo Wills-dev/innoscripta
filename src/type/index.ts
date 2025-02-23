@@ -9,3 +9,9 @@ export interface Article {
   newsUrl: string;
   category: string;
 }
+
+export interface filterValueProps {
+  categories: string[];
+  authors?: string[];
+  sources: string[];
+}

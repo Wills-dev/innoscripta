@@ -1,15 +1,16 @@
-import { Routes, Route } from "react-router-dom";
-
 import "./App.css";
+
+import { Provider } from "react-redux";
+import { store } from "./store/store";
 
 import Home from "./page/Home/Home";
 
 function App() {
   return (
     <>
-      <Routes>
-        <Route path="/" element={<Home />} />
-      </Routes>
+      <Provider store={store}>
+        <Home />
+      </Provider>
     </>
   );
 }

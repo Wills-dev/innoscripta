@@ -5,13 +5,24 @@ import NewsLetter from "./NewsLetter";
 import NavigationLinks from "./NavigationLinks";
 import TopicLinks from "./TopicLinks";
 import SocialLinks from "./SocialLinks";
+import NewsPreferences from "./NewsPreferences";
+
+import { Article } from "@/type";
+import { getFilterValues } from "@/helpers";
 
 interface SidebarProps {
   isSidebarActive: boolean;
   handleActivateSidebar: () => void;
+  allNews: Article[];
 }
 
-const Sidebar = ({ isSidebarActive, handleActivateSidebar }: SidebarProps) => {
+const Sidebar = ({
+  isSidebarActive,
+  handleActivateSidebar,
+  allNews,
+}: SidebarProps) => {
+  const { categories, authors, sources } = getFilterValues(allNews);
+
   useEffect(() => {
     document.body.style.overflow = isSidebarActive ? "hidden" : "auto";
     return () => {
@@ -21,14 +32,14 @@ const Sidebar = ({ isSidebarActive, handleActivateSidebar }: SidebarProps) => {
 
   return (
     <aside
-      className={`w-full fixed left-0 min-h-screen h-screen  transform transition-all duration-700  ease-out backdrop-blur-sm z-20 no-scroll ${
+      className={`w-full fixed left-0 min-h-screen h-screen  transform transition-all duration-700  ease-out backdrop-blur-sm z-20  ${
         isSidebarActive
           ? "-translate-x-0 pointer-events-auto"
           : "-translate-x-full pointer-events-none"
       }`}
     >
       <div className="flex h-full sm:gap-4 gap-2 relative">
-        <div className="max-w-2xl w-full h-full overflow-y-auto bg-primary-blue p-8 max-sm:px-4">
+        <div className="max-w-2xl w-full h-full no-scroll overflow-y-auto bg-primary-blue p-8 max-sm:px-4">
           <p className="sm:text-2xl text-xl font-light font-gt ">
             A nonprofit, independent media organization dedicated to telling
             stories of climate solutions and a just future.
@@ -40,18 +51,21 @@ const Sidebar = ({ isSidebarActive, handleActivateSidebar }: SidebarProps) => {
               </p>
               <SearchForm />
             </div>
+            <NewsPreferences
+              categories={categories}
+              authors={authors}
+              sources={sources}
+            />
+
+            <TopicLinks categories={categories} sources={sources} />
+
             <div className="space-y-4">
               <p className="sub-heading border-b-1 border-primary-black pb-1 border-dotted">
                 Go To
               </p>
               <NavigationLinks />
             </div>
-            <div className="space-y-4">
-              <p className="sub-heading border-b-1 border-primary-black pb-1 border-dotted">
-                Topics
-              </p>
-              <TopicLinks />
-            </div>
+
             <SocialLinks />
             <NewsLetter />
           </div>

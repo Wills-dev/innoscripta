@@ -13,7 +13,12 @@ body {
   color: "#3c3830";
 }
 
-.no-scroll ::-webkit-scrollbar {
+input[type="search"]::-webkit-search-cancel-button {
+  display: none;
+  appearance: none;
+}
+
+.no-scroll::-webkit-scrollbar {
   width: 0px !important;
   height: 0px !important;
 }

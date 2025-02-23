@@ -1,8 +1,27 @@
-import React from "react";
+import { useState } from "react";
+
+import { useDispatch, useSelector } from "react-redux";
+
+import { RootState } from "@/store/store";
+import { setSearchQuery, clearSearch } from "../store/searchSlice";
 
 const SearchForm = () => {
+  const dispatch = useDispatch();
+  const searchQuery = useSelector(
+    (state: RootState) => state.search.searchQuery
+  );
+  const [inputValue, setInputValue] = useState(searchQuery);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    dispatch(setSearchQuery(inputValue));
+  };
+
   return (
-    <form className="flex-c-b sm:gap-4 sm:h-12 h-10 bg-white px-2">
+    <form
+      className="flex-c-b sm:gap-4 sm:h-12 h-10 bg-white px-2"
+      onSubmit={handleSubmit}
+    >
       <button type="submit">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -17,11 +36,29 @@ const SearchForm = () => {
           />
         </svg>
       </button>
-      <input
-        type="search"
-        placeholder="Search"
-        className="flex-1 outline-none h-full bg-white caret-primary-blue"
-      />
+      <div className="flex-1 w-full h-full flex-c-b">
+        <input
+          id="search"
+          type="search"
+          placeholder="Search"
+          className="flex-1 outline-none h-full bg-white caret-primary-blue"
+          value={inputValue}
+          onChange={(e) => setInputValue(e.target.value)}
+        />
+        {searchQuery ||
+          (inputValue && (
+            <button
+              onClick={() => {
+                dispatch(clearSearch());
+                setInputValue("");
+              }}
+              className="text-red-500 font-bold"
+            >
+              X
+            </button>
+          ))}
+      </div>
+
       <button type="submit">
         <svg
           xmlns="http://www.w3.org/2000/svg"
