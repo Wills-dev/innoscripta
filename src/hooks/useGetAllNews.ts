@@ -19,7 +19,7 @@ export const useGetAllNews = () => {
 
   const getAllNews = async () => {
     setLoading(true);
-    const theGuardianAPI = `https://content.guardianapis.com/search?show-elements=image&show-fields=trailText&api-key=${theGuardainApiKey}`;
+    const theGuardianAPI = `https://content.guardianapis.com/search?show-elements=image&show-fields=trailText&page-size=100&api-key=${theGuardainApiKey}`;
     const newYorkTimesAPI = `https://api.nytimes.com/svc/topstories/v2/home.json?api-key=${nyTimesApiKey}`;
     const openNewsAPI = `https://newsapi.org/v2/everything?domains=techcrunch.com,thenextweb.com&apiKey=${openNewsApiKey}`;
 
