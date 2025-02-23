@@ -12,7 +12,7 @@ const StaffPickContent = ({ title, filteredNews }: StaffPickContentProps) => {
 
   return (
     <div className="lg:col-span-1 col-span-2 grid grid-cols-5 gap-8">
-      <h6 className="sub-heading border-b-1 border-primary-black pb-1 border-dotted col-span-5">
+      <h6 className="sub-heading border-b-1 border-primary-black pb-1 border-dotted col-span-5 h-fit">
         {title}
       </h6>
       <div className="sm:col-span-3 col-span-5">
