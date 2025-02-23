@@ -1,7 +1,10 @@
 import { useCallback, useEffect, useState } from "react";
 
-import Logo from "./Logo";
+import { Link } from "react-router-dom";
+
 import { topics } from "@/constants";
+
+import Logo from "./Logo";
 
 interface NavbarProps {
   handleActivateSidebar: () => void;
@@ -53,7 +56,9 @@ const Navbar = ({ handleActivateSidebar }: NavbarProps) => {
         >
           Climate. Justice. Solutions.
         </p>
-        <Logo logoHeight={logoHeight} />
+        <Link to="/">
+          <Logo logoHeight={logoHeight} />
+        </Link>
 
         {isHeightGreaterThan400 && (
           <ul className="flex-c gap-6 font-basis text-primary-black font-bold max-md:hidden">

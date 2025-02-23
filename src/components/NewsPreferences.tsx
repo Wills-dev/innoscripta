@@ -11,6 +11,7 @@ const NewsPreferences = ({
   categories,
   authors,
   sources,
+  handleActivateSidebar,
 }: filterValueProps) => {
   const dispatch = useDispatch();
   const { preferredCategories, preferredSources, preferredAuthors } =
@@ -41,6 +42,7 @@ const NewsPreferences = ({
         preferredAuthors: selectedAuthors,
       })
     );
+    handleActivateSidebar();
   };
 
   const resetPreferences = () => {

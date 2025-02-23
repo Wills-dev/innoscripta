@@ -5,9 +5,17 @@ import { getRandomizedNews } from "@/helpers/randomizedNews";
 
 interface HeroSectionProps {
   filteredNews: Article[];
+  additionalStyling: string;
+  firstSubHeading: string;
+  secondSubHeading: string;
 }
 
-const HeroSection = ({ filteredNews }: HeroSectionProps) => {
+const HeroSection = ({
+  filteredNews,
+  additionalStyling,
+  firstSubHeading,
+  secondSubHeading,
+}: HeroSectionProps) => {
   const randomNews = useMemo(
     () => getRandomizedNews(filteredNews),
     [filteredNews]
@@ -16,7 +24,7 @@ const HeroSection = ({ filteredNews }: HeroSectionProps) => {
   const mainNews = randomNews[randomNews.length - 1];
 
   return (
-    <section className="w-full pt-5">
+    <section className={`w-full ${additionalStyling}`}>
       <div className="padding-ctn w-full">
         <div className="grid  grid-cols-10 w-full gap-8 ">
           <a
@@ -41,7 +49,7 @@ const HeroSection = ({ filteredNews }: HeroSectionProps) => {
           <div className="lg:col-span-4 col-span-11 grid grid-cols-2 gap-8">
             <div className="sm:col-span-1 col-span-2 w-full no-scroll">
               <h6 className="sub-heading border-b-1 border-primary-black pb-1 border-dotted">
-                Latest
+                {firstSubHeading && firstSubHeading}
               </h6>
               <div className="overflow-x-auto flex sm:flex-col w-full mt-2">
                 {filteredNews?.slice(0, 5).map((news, i) => (
@@ -50,7 +58,12 @@ const HeroSection = ({ filteredNews }: HeroSectionProps) => {
                     className="w-full max-sm:min-w-72 sm:border-b-1 max-sm:border-r-1  py-4 max-sm:px-4 space-y-2"
                   >
                     <h3 className="font-light sm:text-lg hover-link">
-                      <a href={news?.newsUrl} className="">
+                      <a
+                        href={news?.newsUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className=""
+                      >
                         {news?.title}
                       </a>
                     </h3>
@@ -61,18 +74,23 @@ const HeroSection = ({ filteredNews }: HeroSectionProps) => {
             </div>
             <div className="sm:col-span-1 col-span-2 w-full ">
               <h6 className="sub-heading border-b-1 border-primary-black pb-1 border-dotted">
-                Featured
+                {secondSubHeading && secondSubHeading}
               </h6>
               <div className="flex flex-col w-full">
                 {randomNews?.slice(0, 3).map((news, i) => (
                   <div key={i} className="w-full border-b-1 py-4 space-y-2">
-                    <a href="" className="">
+                    <a
+                      href={news?.newsUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className=""
+                    >
                       <div className="">
                         <div className="max-w-full w-full">
                           <img
                             src={news?.imageUrl}
                             alt={news.title || "Featured News"}
-                            className="max-w-full w-full h-auto object-cover"
+                            className="max-w-full w-full sm:max-h-40 h-auto object-cover"
                             loading="lazy"
                           />
                         </div>
