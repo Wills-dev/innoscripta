@@ -45,8 +45,8 @@ const Sidebar = ({
       <div className="flex h-full sm:gap-4 gap-2 relative">
         <div className="max-w-2xl w-full h-full no-scroll overflow-y-auto bg-primary-blue p-8 max-sm:px-4">
           <p className="sm:text-2xl text-xl font-light font-gt ">
-            A nonprofit, independent media organization dedicated to telling
-            stories of climate solutions and a just future.
+            A nonprofit, independent media organization dedicated to providing
+            the world recent news from across the globe.
           </p>
           <div className="pt-14 space-y-10">
             <div className="space-y-4" id="search">
