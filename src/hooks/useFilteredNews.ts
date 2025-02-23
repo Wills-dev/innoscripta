@@ -13,6 +13,8 @@ const useFilteredNews = (allNews: Article[]) => {
     (state: RootState) => state.newsFilter
   );
 
+  console.log("searchQuery", searchQuery);
+
   const hasPreferences =
     preferredCategories.length ||
     preferredSources.length ||
@@ -37,6 +39,8 @@ const useFilteredNews = (allNews: Article[]) => {
       news.category.toLowerCase().includes(searchQuery.toLowerCase()) ||
       news.author.toLowerCase().includes(searchQuery.toLowerCase()) ||
       news.source.toLowerCase().includes(searchQuery.toLowerCase());
+
+    console.log("inSearch", inSearch);
 
     return inPreferences && inSearch && inFilters;
   });
