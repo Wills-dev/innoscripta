@@ -3,6 +3,7 @@ import { useLocation } from "react-router-dom";
 
 import { useSelector } from "react-redux";
 
+import Loader from "@/components/Loader";
 import Catalog from "@/components/Catalog";
 import Footer from "@/components/Footer";
 import HeroSection from "@/components/HeroSection";
@@ -17,11 +18,8 @@ import FilterFeature from "@/components/FilterFeature";
 
 import { RootState } from "@/store/store";
 import { useGetAllNews } from "@/hooks/useGetAllNews";
-import Loader from "@/components/Loader";
 
 const Home = () => {
-  const location = useLocation();
-
   const [isSidebarActive, setIsSideBarActive] = useState(false);
 
   const searchQuery = useSelector(
@@ -31,7 +29,7 @@ const Home = () => {
   const { allNews, loading } = useGetAllNews();
   const filteredNews = useFilteredNews(allNews);
 
-  const searchParams = new URLSearchParams(location.search);
+  const searchParams = new URLSearchParams(window.location.search);
   const searchQ = searchParams.get("q") || "";
 
   const handleActivateSidebar = () => {
