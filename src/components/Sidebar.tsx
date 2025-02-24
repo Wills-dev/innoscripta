@@ -1,10 +1,9 @@
 import { useEffect } from "react";
 
+import SocialLinks from "./SocialLinks";
 import SearchForm from "./SearchForm";
 import NewsLetter from "./NewsLetter";
 import NavigationLinks from "./NavigationLinks";
-import TopicLinks from "./TopicLinks";
-import SocialLinks from "./SocialLinks";
 import NewsPreferences from "./NewsPreferences";
 
 import { Article } from "@/type";
@@ -68,19 +67,12 @@ const Sidebar = ({
               handleActivateSidebar={handleActivateSidebar}
             />
 
-            <TopicLinks
-              categories={categories}
-              sources={sources}
-              handleActivateSidebar={handleActivateSidebar}
-            />
-
             <div className="space-y-4">
               <p className="sub-heading border-b-1 border-primary-black pb-1 border-dotted">
                 Go To
               </p>
               <NavigationLinks />
             </div>
-
             <SocialLinks />
             <NewsLetter />
           </div>

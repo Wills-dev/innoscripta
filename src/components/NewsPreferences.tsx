@@ -1,13 +1,17 @@
 import { useState } from "react";
-import { Dispatch, SetStateAction } from "react";
 
 import { motion } from "framer-motion";
 import { useDispatch, useSelector } from "react-redux";
 
-import { RootState } from "../store/store";
-import { setPreferences, clearPreference } from "@/store/newsPreferencesSlice";
 import { filterValueProps } from "@/type";
+import { RootState } from "../store/store";
+import { clearSearch } from "@/store/searchSlice";
+import { clearFilter } from "@/store/newsFilterSlice";
+import { setPreferences, clearPreference } from "@/store/newsPreferencesSlice";
+
 import ExpandableButton from "./ExpandableButton";
+import { toggleSelection } from "@/helpers";
+import { useNavigate } from "react-router-dom";
 
 const NewsPreferences = ({
   categories,
@@ -15,6 +19,7 @@ const NewsPreferences = ({
   sources,
   handleActivateSidebar,
 }: filterValueProps) => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const { preferredCategories, preferredSources, preferredAuthors } =
     useSelector((state: RootState) => state.preferences);
@@ -32,17 +37,10 @@ const NewsPreferences = ({
     ? categories
     : categories?.slice(0, 10);
 
-  const toggleSelection = (
-    list: string[],
-    setList: Dispatch<SetStateAction<string[]>>,
-    item: string
-  ) => {
-    setList(
-      list.includes(item) ? list.filter((i) => i !== item) : [...list, item]
-    );
-  };
-
   const savePreferences = () => {
+    navigate("/");
+    dispatch(clearSearch());
+    dispatch(clearFilter());
     dispatch(
       setPreferences({
         preferredCategories: selectedCategories,
@@ -54,6 +52,9 @@ const NewsPreferences = ({
   };
 
   const resetPreferences = () => {
+    navigate("/");
+    dispatch(clearSearch());
+    dispatch(clearFilter());
     dispatch(clearPreference());
     setSelectedAuthors([]);
     setSelectedCategories([]);
@@ -67,7 +68,6 @@ const NewsPreferences = ({
       {/* Preferences Selection */}
       <div className="my-4 border-primary-black pb-4 border-b-1  border-dotted">
         <p className="font-semibold">Categories</p>
-
         <motion.div
           initial={{ height: 0 }}
           animate={{ height: "auto" }}
