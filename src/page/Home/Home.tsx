@@ -14,7 +14,6 @@ import Sidebar from "@/components/Sidebar";
 import Topics from "@/components/Topics";
 import StaffPick from "@/components/StaffPick";
 import useFilteredNews from "@/hooks/useFilteredNews";
-import FilterFeature from "@/components/FilterFeature";
 
 import { RootState } from "@/store/store";
 import { useGetAllNews } from "@/hooks/useGetAllNews";
@@ -33,24 +32,12 @@ const Home = () => {
   const { preferredCategories, preferredSources, preferredAuthors } =
     useSelector((state: RootState) => state.preferences);
 
-  const { category, source, date } = useSelector(
-    (state: RootState) => state.newsFilter
-  );
-
   const { allNews, loading } = useGetAllNews();
   const filteredNews = useFilteredNews(allNews);
 
   const handleActivateSidebar = () => {
     setIsSideBarActive((prev) => !prev);
   };
-
-  const userFilterNotFound = useMemo(() => {
-    return (
-      (category || source || date) &&
-      filteredNews.length === 0 &&
-      allNews.length > 0
-    );
-  }, [category, source, date, filteredNews, allNews]);
 
   const userPreferenceNotFound = useMemo(() => {
     return (
@@ -79,8 +66,6 @@ const Home = () => {
     content = <ErrorMessage errorMsg={errorMessages.noNews} />;
   } else if (userPreferenceNotFound) {
     content = <ErrorMessage errorMsg={errorMessages.noPreferencesMatch} />;
-  } else if (userFilterNotFound) {
-    content = <ErrorMessage errorMsg={errorMessages.noFilterMatch} />;
   } else if (userSearch) {
     content = (
       <Catalog
@@ -92,10 +77,9 @@ const Home = () => {
   } else {
     content = (
       <>
-        <FilterFeature allNews={allNews} />
         <HeroSection
           filteredNews={filteredNews}
-          additionalStyling="pt-10"
+          additionalStyling="sm:pt-40 pt-28"
           firstSubHeading="Latest"
           secondSubHeading="Featured"
         />

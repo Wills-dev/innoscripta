@@ -1,14 +1,14 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface NewsFilterState {
-  category: string | null;
-  source: string | null;
+  filteredCategories: string[];
+  filteredSources: string[];
   date: string | null;
 }
 
 const initialState: NewsFilterState = {
-  category: null,
-  source: null,
+  filteredCategories: [],
+  filteredSources: [],
   date: null,
 };
 
@@ -16,19 +16,19 @@ const newsFilterSlice = createSlice({
   name: "newsFilter",
   initialState,
   reducers: {
-    setCategory: (state, action: PayloadAction<string | null>) => {
-      state.category = action.payload;
-    },
-    setSource: (state, action: PayloadAction<string | null>) => {
-      state.source = action.payload;
+    setFilter: (
+      state,
+      action: PayloadAction<Omit<NewsFilterState, "date">>
+    ) => {
+      state.filteredCategories = action.payload.filteredCategories;
+      state.filteredSources = action.payload.filteredSources;
     },
     setDate: (state, action: PayloadAction<string | null>) => {
       state.date = action.payload;
     },
-    resetFilters: () => initialState,
+    clearFilter: () => initialState,
   },
 });
 
-export const { setCategory, setSource, setDate, resetFilters } =
-  newsFilterSlice.actions;
+export const { setFilter, setDate, clearFilter } = newsFilterSlice.actions;
 export default newsFilterSlice.reducer;

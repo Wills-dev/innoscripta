@@ -1,3 +1,5 @@
+import { Dispatch, SetStateAction } from "react";
+
 import { Article } from "@/type";
 
 export function formatDate(isoString: string) {
@@ -95,4 +97,14 @@ export const getFilterValues = (articles: Article[]) => {
     authors: Array.from(authors).sort(),
     sources: Array.from(sources).sort(),
   };
+};
+
+export const toggleSelection = (
+  list: string[],
+  setList: Dispatch<SetStateAction<string[]>>,
+  item: string
+) => {
+  setList(
+    list.includes(item) ? list.filter((i) => i !== item) : [...list, item]
+  );
 };

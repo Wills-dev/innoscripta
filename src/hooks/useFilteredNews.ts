@@ -4,12 +4,14 @@ import { Article } from "@/type";
 import { RootState } from "@/store/store";
 
 const useFilteredNews = (allNews: Article[]) => {
+  const { preferredCategories, preferredSources, preferredAuthors } =
+    useSelector((state: RootState) => state.preferences);
+
   const searchQuery = useSelector(
     (state: RootState) => state.search.searchQuery
   );
-  const { preferredCategories, preferredSources, preferredAuthors } =
-    useSelector((state: RootState) => state.preferences);
-  const { category, source, date } = useSelector(
+
+  const { filteredCategories, filteredSources, date } = useSelector(
     (state: RootState) => state.newsFilter
   );
 
@@ -18,28 +20,33 @@ const useFilteredNews = (allNews: Article[]) => {
     preferredSources.length ||
     preferredAuthors.length;
 
-  const filteredNews = allNews.filter((news) => {
-    const inPreferences =
-      !hasPreferences ||
-      ((!preferredCategories.length ||
-        preferredCategories.includes(news.category)) &&
-        (!preferredSources.length || preferredSources.includes(news.source)) &&
-        (!preferredAuthors.length || preferredAuthors.includes(news.author)));
+  const preferredNews = hasPreferences
+    ? allNews.filter(
+        (news) =>
+          (!preferredCategories.length ||
+            preferredCategories.includes(news.category)) &&
+          (!preferredSources.length ||
+            preferredSources.includes(news.source)) &&
+          (!preferredAuthors.length || preferredAuthors.includes(news.author))
+      )
+    : allNews;
 
-    const inFilters =
-      (!category || news.category === category) &&
-      (!source || news.source === source) &&
-      (!date || news.publishedAt === date);
-
-    const inSearch =
+  const searchedNews = preferredNews.filter(
+    (news) =>
       !searchQuery ||
       news.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
       news.category.toLowerCase().includes(searchQuery.toLowerCase()) ||
       news.author.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      news.source.toLowerCase().includes(searchQuery.toLowerCase());
+      news.source.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
-    return inPreferences && inSearch && inFilters;
-  });
+  const filteredNews = searchedNews.filter(
+    (news) =>
+      (!filteredCategories.length ||
+        filteredCategories.includes(news.category)) &&
+      (!filteredSources.length || filteredSources.includes(news.source)) &&
+      (!date || news.publishedAt === date)
+  );
 
   return filteredNews;
 };
