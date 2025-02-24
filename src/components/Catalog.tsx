@@ -2,7 +2,6 @@ import { Article } from "@/type";
 import { getFilterValues } from "@/helpers";
 
 import TopicLinks from "./TopicLinks";
-import RecentNews from "./RecentNews";
 import SearchForm from "./SearchForm";
 import RecentNewsContent from "./RecentNewsContent";
 import { useState } from "react";
