@@ -5,15 +5,12 @@ import { useSelector } from "react-redux";
 
 import Loader from "@/components/Loader";
 import Catalog from "@/components/Catalog";
-import Footer from "@/components/Footer";
 import HeroSection from "@/components/HeroSection";
-import Navbar from "@/components/Navbar";
 import RecentNews from "@/components/RecentNews";
-import ScrollTop from "@/components/ScrollTop";
-import Sidebar from "@/components/Sidebar";
 import Topics from "@/components/Topics";
 import StaffPick from "@/components/StaffPick";
 import useFilteredNews from "@/hooks/useFilteredNews";
+import MainLayout from "@/components/MainLayout";
 
 import { RootState } from "@/store/store";
 import { useGetAllNews } from "@/hooks/useGetAllNews";
@@ -107,17 +104,14 @@ const Home = () => {
   }
 
   return (
-    <main className="relative min-h-screen w-full bg-gray-100">
-      <ScrollTop />
-      <Navbar handleActivateSidebar={handleActivateSidebar} />
-      <Sidebar
-        isSidebarActive={isSidebarActive}
-        setIsSideBarActive={setIsSideBarActive}
-        allNews={allNews}
-      />
+    <MainLayout
+      handleActivateSidebar={handleActivateSidebar}
+      allNews={allNews}
+      setIsSideBarActive={setIsSideBarActive}
+      isSidebarActive={isSidebarActive}
+    >
       {content}
-      <Footer />
-    </main>
+    </MainLayout>
   );
 };
 
