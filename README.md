@@ -117,10 +117,6 @@ node_modules
 - Use the search bar to find specific news articles.
 - Filter search results by date, source, or category.
 
-## Contributing
-
-Feel free to submit issues and pull requests to improve the application.
-
 ## License
 
 This project is licensed under the MIT License.
